@@ -1,0 +1,83 @@
+"FILTERING REST-COUNTRY API USING FILTER FUNCTION AND PRINTING COUNTRIES IN ASIAN REGION"
+	  
+let restcountries = new XMLHttpRequest();
+restcountries.open("GET", "https://restcountries.com/v2/all");
+restcountries.onload = function () {
+    if (restcountries.status >= 200 && restcountries.status < 300) {
+    let t = JSON.parse(this.response);
+    let Asiancountries = t.filter((country)=>(country.region==="Asia"));
+    console.log(Asiancountries);
+  } else {
+    console.log("Data is not available");
+  }
+};
+
+restcountries.send();
+
+
+"PRINTING COUNTRIES WITH POPULATION LESS THAN 200000 USING FILTER FUNCTION"
+		 
+let restcountries = new XMLHttpRequest();
+restcountries.open("GET", "https://restcountries.com/v2/all");
+restcountries.onload = function () {
+    if (restcountries.status >= 200 && restcountries.status < 300) {
+    let t = JSON.parse(this.response);
+    let population = t.filter((country)=>(country.population<200000));
+    console.log(population);
+  } else {
+    console.log("Data is not available");
+  }
+};
+
+restcountries.send();
+
+"PRINTING COUNTRY'S NAME , CAPITAL , FLAG USING FOR-EACH FUNCTION"
+	   
+let restcountries = new XMLHttpRequest();
+restcountries.open("GET", "https://restcountries.com/v2/all");
+restcountries.onload = function () {
+    if (restcountries.status >= 200 && restcountries.status < 300) {
+    let t = JSON.parse(this.response);
+    t.forEach((country)=>
+    console.log(`
+    country : ${country.name}
+    capital : ${country.capital}
+    flag : ${country.flag}`));
+  } else {
+    console.log("Data is not available");
+  }
+};
+
+restcountries.send();
+
+"PRINTING TOTAL POPULATION OF COUNTRIES USING REDUCE FUNCTION"
+	   
+let restcountries = new XMLHttpRequest();
+restcountries.open("GET", "https://restcountries.com/v2/all");
+restcountries.onload = function () {
+    if (restcountries.status >= 200 && restcountries.status < 300) {
+    let t = JSON.parse(this.response);
+    let totalPopulation = t.reduce((sum,country)=>sum+country.population,0);
+    console.log(totalPopulation);
+  } else {
+    console.log("Data is not available");
+  }
+};
+
+restcountries.send();
+
+ "PRINTING THE COUNTRY'S NAME THAT USE (U.S DOLLAR) AS CURRENCY IN REST-COUNTRIES USING FILTER AND MAP FUNCTION"
+	  
+let restcountries = new XMLHttpRequest();
+restcountries.open("GET", "https://restcountries.com/v2/all");
+restcountries.onload = function () {
+    if (restcountries.status >= 200 && restcountries.status < 300) {
+    let t = JSON.parse(this.response);
+    let countries = t.filter((country)=>country.currencies && country['currencies'][0]['symbol']==="$").map((country)=>country.name);
+    console.log(countries);
+  } else {
+    console.log("Data is not available");
+  }
+};
+
+restcountries.send();
